@@ -70,8 +70,9 @@ export default {
       this.$refs.uploader.click();
     },
     onFileChanged(e) {
-      this.selectedFile = e.target.files[0];
       const imgKey = Date.now() + Math.random().toString().replace(".", "");
+      this.createImageMessage({ uploaded: 0, key: imgKey });
+      this.selectedFile = e.target.files[0];
       e.target.value = "";
       const formData = new FormData();
       formData.append("image", this.selectedFile);
