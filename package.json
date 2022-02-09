@@ -1,7 +1,7 @@
 {
   "name": "nuxt-chat-app",
   "version": "1.0.0",
-  "description": "Simple chat on Nuxt.js with",
+  "description": "Simple chat on Nuxt.js",
   "author": "Rwitick Ghosh",
   "private": false,
   "scripts": {

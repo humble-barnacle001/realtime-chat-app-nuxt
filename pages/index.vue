@@ -92,7 +92,7 @@ export default {
   },
 
   head: {
-    title: "Realtime Chat Application",
+    title: "Home",
   },
 };
 </script>

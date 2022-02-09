@@ -3,8 +3,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - " + process.env.npm_package_name,
-    title: process.env.npm_package_name || "",
+    titleTemplate: "%s - " + "Realtime Chat App",
+    title: "Realtime Chat App",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -49,7 +49,7 @@ module.exports = {
       display: "standalone",
     },
     icon: {
-      iconSrc: "./static/favicon.ico",
+      iconSrc: "./static/icon.png",
     },
   },
   /*
