@@ -1,13 +1,20 @@
 <template>
   <div class="chat-wrapper">
     <Snackbar v-model="snackbar" :text="customMessage" :timeout="timeout" />
+    <CoolLightBox
+      :items="images"
+      :index="currentIndex"
+      @close="currentIndex = null"
+    />
     <div ref="chat" class="chat">
       <Message
         v-for="(message, index) in messages"
         :key="`message-${index}`"
+        :index="index"
         :message="message"
         :owner="message.id === user.id"
         :ownercolor="randomColor(message.id)"
+        @clicked="handleImageClick"
       />
     </div>
     <div v-if="typingUsers.length" class="chat__typing">
@@ -26,6 +33,7 @@
 </template>
 
 <script>
+import CoolLightBox from "vue-cool-lightbox";
 import { mapState, mapGetters } from "vuex";
 import Message from "@/components/Message";
 import ChatForm from "@/components/ChatForm";
@@ -37,6 +45,7 @@ export default {
   components: {
     Message,
     ChatForm,
+    CoolLightBox,
     Snackbar,
   },
   data: () => ({
@@ -44,6 +53,8 @@ export default {
     timeout: 2000,
     customMessageText: "",
     colorCache: {},
+    images: [],
+    currentIndex: null,
   }),
   computed: {
     ...mapState(["user", "messages", "users"]),
@@ -59,6 +70,9 @@ export default {
           this.$refs.chat.scrollTop = this.$refs.chat.scrollHeight;
         }
       }, 0);
+      this.images = this.messages
+        .filter((msg) => msg.isImage)
+        .map((msg) => msg.text);
     },
   },
   methods: {
@@ -74,6 +88,12 @@ export default {
         (this.colorCache[id] = `rgb(${r()}, ${r()}, ${r()})`)
       );
     },
+    handleImageClick(index) {
+      this.currentIndex = this.messages.reduce(
+        (i, msg, mind) => (msg.isImage ? (mind < index ? i + 1 : i) : i),
+        0,
+      );
+    },
   },
   head() {
     return {
@@ -83,6 +103,8 @@ export default {
 };
 </script>
 
+<style src="vue-cool-lightbox/dist/vue-cool-lightbox.min.css">
+</style>
 <style scoped>
 .chat-wrapper {
   height: 100%;

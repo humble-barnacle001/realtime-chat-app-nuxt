@@ -30,9 +30,10 @@ io.on("connection", (socket) => {
   socket.on("createMessage", ({ id, msg: { msg, isImage } }) => {
     const user = usersDB.getUser(id);
     if (user) {
-      (!isImage ? io : socket.broadcast)
-        .to(user.room)
-        .emit("newMessage", new Message(user.name, msg, isImage, id));
+      io.to(user.room).emit(
+        "newMessage",
+        new Message(user.name, msg, isImage, id),
+      );
     }
   });
 

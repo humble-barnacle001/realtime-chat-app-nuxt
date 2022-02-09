@@ -24,10 +24,16 @@
                 {{ message.text }}
               </span>
             </span>
-            <v-img v-else-if="isUploaded" contain :src="message.text" />
+            <v-img
+              v-else-if="isUploaded"
+              contain
+              :src="message.text"
+              class="hover"
+              @click="$emit('clicked', index)"
+            />
             <v-progress-circular
               v-else
-              color="pink"
+              color="#FFF388"
               size="100"
               width="10"
               :value="loadPercent"
@@ -49,6 +55,10 @@
 <script>
 export default {
   props: {
+    index: {
+      type: Number,
+      default: 0,
+    },
     message: {
       type: Object,
       default: () => {},
@@ -69,7 +79,7 @@ export default {
       return !this.message.isImage;
     },
     isUploaded() {
-      return this.message.uploadProgress === 1;
+      return this.message.uploadProgress === 1 && !!this.message.text;
     },
     loadPercent() {
       return Math.round(this.message.uploadProgress * 100);
@@ -86,6 +96,10 @@ export default {
   p {
     margin-bottom: 1rem;
   }
+}
+
+.hover:hover {
+  cursor: pointer;
 }
 
 .msg-wrapper {

@@ -89,15 +89,10 @@ export default {
             }),
         })
         .then((response) => {
-          this.createImageMessage({
-            uploaded: 1,
-            key: imgKey,
-            src: response.data.data.link,
-          });
+          this.createImageMessage({ uploaded: 1, key: imgKey });
           this.createMessage({ msg: response.data.data.link, isImage: true });
         })
         .catch((e) => {
-          this.removeMessage(imgKey);
           let alertText = "Upload failed";
           alertText +=
             !!e.response.data &&
@@ -106,7 +101,8 @@ export default {
             !!e.response.data.data.error.message &&
             ": " + e.response.data.data.error.message;
           this.$emit("alert", alertText);
-        });
+        })
+        .finally(() => this.removeMessage(imgKey));
     },
   },
 };

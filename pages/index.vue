@@ -5,7 +5,7 @@
         <Snackbar v-model="snackbar" :text="message" />
 
         <v-card-title>
-          <h2>Login</h2>
+          <h2>Enter Details</h2>
         </v-card-title>
         <v-card-text>
           <v-form
@@ -18,14 +18,14 @@
               v-model="user.name"
               :counter="16"
               :rules="nameRules"
-              label="Name"
+              label="Your Name"
               required
             />
             <v-text-field
               v-model="user.room"
               :counter="16"
               :rules="roomRules"
-              label="Enter the room"
+              label="Room Name"
               required
             />
             <v-btn

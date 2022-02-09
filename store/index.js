@@ -32,10 +32,8 @@ export const mutations = {
   },
   updateImageMessage(state, data) {
     const x = state.messages.find((message) => message.imageKey === data.key);
-    if (x) {
-      x.uploadProgress = data.uploaded;
-      if (data.uploaded === 1 && !!data.src) x.text = data.src;
-    } else
+    if (x) x.uploadProgress = data.uploaded;
+    else
       this.commit(
         "SOCKET_newMessage",
         new Message(
