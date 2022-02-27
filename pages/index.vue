@@ -25,7 +25,7 @@
               v-model="user.room"
               :counter="16"
               :rules="roomRules"
-              label="Room Name"
+              label="Group Name"
               required
             />
             <v-btn
@@ -66,8 +66,8 @@ export default {
       (v) => (v && v.length <= 16) || "Name must be less than 16 characters",
     ],
     roomRules: [
-      (v) => !!v || "Enter the room",
-      (v) => (v && v.length <= 16) || "Room must be less than 16 characters",
+      (v) => !!v || "Enter the group",
+      (v) => (v && v.length <= 16) || "Group must be less than 16 characters",
     ],
     snackbar: false,
   }),

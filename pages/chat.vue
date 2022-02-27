@@ -24,7 +24,7 @@ import Snackbar from "@/components/Snackbar";
 import ChatPage from "@/components/ChatPage";
 
 export default {
-  name: "Room",
+  name: "Group",
   layout: "chat",
   components: {
     ChatForm,
@@ -52,7 +52,7 @@ export default {
   },
   head() {
     return {
-      title: `Room ${this.user.room}`,
+      title: `Group ${this.user.room}`,
     };
   },
 };

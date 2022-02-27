@@ -3,8 +3,8 @@ module.exports = {
    ** Headers of the page
    */
   head: {
-    titleTemplate: "%s - " + "Realtime Chat App",
-    title: "Realtime Chat App",
+    titleTemplate: "%s - " + "Realtime Group Chat App",
+    title: "Realtime Group Chat App",
     meta: [
       { charset: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
@@ -14,7 +14,7 @@ module.exports = {
         content: process.env.npm_package_description || "",
       },
     ],
-    link: [{ rel: "icon", type: "image/x-icon", href: "/favicon.ico" }],
+    link: [{ rel: "icon", type: "image/png", href: "/icon.png" }],
   },
   /*
    ** Customize the progress-bar color
@@ -42,8 +42,8 @@ module.exports = {
 
   pwa: {
     manifest: {
-      name: "Nuxt.js PWA nuxt-chat-app",
-      short_name: "Nuxt.js PWA",
+      name: "Realtime Group Chat App",
+      short_name: "Group ChatApp",
       start_url: "/",
       theme_color: "#424242",
       display: "standalone",

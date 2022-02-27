@@ -7,7 +7,7 @@
       color="$accent"
     >
       <v-list subheader>
-        <v-subheader>Users in room</v-subheader>
+        <v-subheader>Users in group</v-subheader>
 
         <v-list-item
           v-for="({ name, id }, index) in users"
@@ -30,7 +30,7 @@
     <v-app-bar app color="#424242">
       <v-app-bar-nav-icon @click="drawer = !drawer" />
       <v-toolbar-title>
-        Room
+        Group
         <v-chip color="grey">
           {{ user.room }}
         </v-chip>
