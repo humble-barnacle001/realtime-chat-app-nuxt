@@ -5,9 +5,12 @@
       label="Message..."
       outlined
       :rules="rules"
+      :prepend-icon="mode"
+      :prefix="modeText"
       append-icon="mdi-paperclip"
       @input="typing"
       @click:append="handleFileImport"
+      @click:prepend="setPrefixIcon"
       @blur="resetValidation"
     />
     <input
@@ -31,6 +34,8 @@ export default {
     isSelecting: false,
     selectedFile: null,
     rules: [(v) => !!v || "Text is required"],
+    mode: "mdi-radiobox-blank",
+    modeText: "",
   }),
   computed: {
     ...mapGetters(["typingStatus"]),
@@ -42,10 +47,27 @@ export default {
       "createImageMessage",
       "removeMessage",
     ]),
+    isBroadcast() {
+      return this.mode === "mdi-radiobox-marked";
+    },
+    setPrefixIcon({ disable = false }) {
+      if (!disable && !this.isBroadcast()) {
+        this.mode = "mdi-radiobox-marked";
+        this.modeText = "Broadcast: ";
+      } else {
+        this.mode = "mdi-radiobox-blank";
+        this.modeText = "";
+      }
+    },
     send() {
       if (this.$refs.form.validate()) {
-        this.createMessage({ msg: this.text, isImage: false });
+        this.createMessage({
+          msg: this.text,
+          isImage: false,
+          isBroadcast: this.isBroadcast(),
+        });
         this.text = "";
+        this.setPrefixIcon({ disable: true });
         this.resetValidation();
       }
     },

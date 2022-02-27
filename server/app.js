@@ -27,15 +27,32 @@ io.on("connection", (socket) => {
       );
   });
 
-  socket.on("createMessage", ({ id, msg: { msg, isImage } }) => {
-    const user = usersDB.getUser(id);
-    if (user) {
-      io.to(user.room).emit(
-        "newMessage",
-        new Message(user.name, msg, isImage, id),
-      );
-    }
-  });
+  socket.on(
+    "createMessage",
+    ({ id, msg: { msg, isImage, isBroadcast = false } }) => {
+      const user = usersDB.getUser(id);
+      if (user) {
+        if (!isBroadcast)
+          io.to(user.room).emit(
+            "newMessage",
+            new Message(user.name, msg, isImage, id),
+          );
+        else
+          io.emit(
+            "newMessage",
+            new Message(
+              user.name,
+              `${isBroadcast ? `Broadcast from ${user.name}: ` : ""}${msg}`,
+              false,
+              id,
+              1,
+              null,
+              true,
+            ),
+          );
+      }
+    },
+  );
 
   socket.on("setTypingStatus", ({ room, typingStatus, id }) => {
     usersDB.setTypingStatus(id, typingStatus);

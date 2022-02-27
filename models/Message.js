@@ -1,5 +1,13 @@
 class Message {
-  constructor(name, text, isImage, id, uploadProgress = 1, imageKey = null) {
+  constructor(
+    name,
+    text,
+    isImage,
+    id,
+    uploadProgress = 1,
+    imageKey = null,
+    isBroadcast = false,
+  ) {
     this.name = name;
     this.text = text;
     this.isImage = isImage;
@@ -7,6 +15,7 @@ class Message {
     this.uploadProgress = uploadProgress;
     this.imageKey = imageKey;
     this.time = Date.now();
+    this.isBroadcast = isBroadcast;
   }
 }
 

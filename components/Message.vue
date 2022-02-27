@@ -1,7 +1,9 @@
 <template>
   <v-row justify="center" no-gutters>
-    <p v-if="isSystemMessage" class="text-center font-italic system">
-      {{ message.text }}
+    <p v-if="isBroadcastMessage" class="text-center font-italic system">
+      <span :class="getSystemMessageColor">
+        {{ message.text }}
+      </span>
     </p>
     <v-col v-else class="msg-wrapper">
       <v-row
@@ -72,8 +74,11 @@ export default {
     },
   },
   computed: {
-    isSystemMessage() {
-      return this.message.name === "admin";
+    getSystemMessageColor() {
+      return this.message.name === "admin" ? "red--text" : "green--text";
+    },
+    isBroadcastMessage() {
+      return this.message.name === "admin" || this.message.isBroadcast;
     },
     isTextMessage() {
       return !this.message.isImage;
