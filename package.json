@@ -21,7 +21,7 @@
     "nuxt": "^2.12.2",
     "sass": "^1.26.5",
     "sass-loader": "^8.0.2",
-    "socket.io": "^2.4.0",
+    "socket.io": "^4.8.1",
     "vue-cool-lightbox": "^2.7.4",
     "vue-socket.io": "^3.0.9",
     "vuetify": "^2.2.29"
