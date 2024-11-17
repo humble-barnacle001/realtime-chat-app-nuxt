@@ -24,7 +24,7 @@
     "socket.io": "^2.4.0",
     "vue-cool-lightbox": "^2.7.4",
     "vue-socket.io": "^3.0.9",
-    "vuetify": "^2.2.29"
+    "vuetify": "^3.7.4"
   },
   "devDependencies": {
     "babel-eslint": "^10.1.0",
